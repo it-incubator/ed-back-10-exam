@@ -47,7 +47,7 @@ export const userService = {
 
     //TODO: add business logic: only a user with Active status can be updated
 
-    await userRepository.updateUser(id, { login, email, age });
+    await userRepository.updateUser(id, { login, email, age, updatedAt: new Date() });
 
     return handleSuccessResult(null);
   },

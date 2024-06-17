@@ -26,6 +26,7 @@ export const userRepository = {
       passwordHash,
       age,
       status: UserStatus.active,
+      createdAt: new Date(),
     });
 
     return result._id.toString();
@@ -33,7 +34,7 @@ export const userRepository = {
 
   async updateUser(
     id: string,
-    { email, login, age }: Omit<UserType, 'passwordHash' | 'status'>
+    { email, login, age }: Omit<UserType, 'passwordHash' | 'status' | 'createdAt'>
   ): Promise<void> {
     await UserModel.updateOne({ _id: id }, { email, login, age });
   },
