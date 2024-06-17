@@ -1,16 +1,17 @@
 import { WithId } from 'mongodb';
 import { UserModel, UserStatus, UserType } from '../domain/User.entity';
+import { HydratedDocument } from 'mongoose';
 
 export const userRepository = {
-  async getUsers(): Promise<WithId<UserType>[]> {
+  async getUsers(): Promise<HydratedDocument<UserType>[]> {
     return UserModel.find();
   },
 
-  getUser(id: string): Promise<WithId<UserType> | null> {
+  getUser(id: string): Promise<HydratedDocument<UserType> | null> {
     return UserModel.findOne({ _id: id });
   },
 
-  getUserByLogin(login: string): Promise<WithId<UserType> | null> {
+  getUserByLogin(login: string): Promise<HydratedDocument<UserType> | null> {
     return UserModel.findOne({ login });
   },
 
